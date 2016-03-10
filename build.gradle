@@ -33,8 +33,8 @@ publishing {
             name 'Bintray'
             url 'https://api.bintray.com/maven/jivy/maven/GradleUploadDirectoryToFtpTask'
             credentials {
-                username System.getProperty("BINTRAY_UPLOAD_DIRECTORY_TASK_USERNAME")
-                password System.getProperty("BINTRAY_UPLOAD_DIRECTORY_TASK_PASSWORD")
+                username System.getenv("BINTRAY_UPLOAD_DIRECTORY_TASK_USERNAME")
+                password System.getenv("BINTRAY_UPLOAD_DIRECTORY_TASK_PASSWORD")
             }
         }
     }
