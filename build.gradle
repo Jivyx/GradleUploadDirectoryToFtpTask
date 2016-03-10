@@ -1,5 +1,5 @@
 apply plugin: 'groovy'
-apply plugin: 'maven'
+apply plugin: 'maven-publish'
 
 repositories {
     jcenter()
@@ -13,13 +13,29 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-group = 'fr.dadda.jv.gradle'
-version = '1.0-SNAPSHOT'
-
-uploadArchives {
+publishing {
+    publications {
+        dev(MavenPublication) {
+            groupId 'fr.dadda.jv.gradle'
+            artifactId 'GradleUploadDirectoryToFtpTask'
+            version projectVersion + '-SNAPSHOT'
+            from components.java
+        }
+        release(MavenPublication) {
+            groupId 'fr.dadda.jv.gradle'
+            artifactId 'GradleUploadDirectoryToFtpTask'
+            version projectVersion
+            from components.java
+        }
+    }
     repositories {
-        mavenDeployer {
-            repository(url: mavenLocal().url)
+        maven {
+            name 'Bintray'
+            url 'https://api.bintray.com/maven/jivy/maven/GradleUploadDirectoryToFtpTask'
+            credentials {
+                username System.getProperty("BINTRAY_UPLOAD_DIRECTORY_TASK_USERNAME")
+                password System.getProperty("BINTRAY_UPLOAD_DIRECTORY_TASK_PASSWORD")
+            }
         }
     }
 }
