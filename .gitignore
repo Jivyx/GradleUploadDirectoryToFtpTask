@@ -1,0 +1,18 @@
+# build folders
+bin/
+gen/
+out/
+build/
+.idea/
+.gradle/
+*.iml
+
+# MAC files
+.DS_Store
+
+# private
+.settings/
+
+# Others
+lint.xml
+local.properties
